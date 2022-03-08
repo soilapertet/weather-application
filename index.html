@@ -5,6 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/scripts.js" defer></script>
   <title>Weather App</title>
@@ -14,7 +17,7 @@
     <section class="weather-banner">
       <h1 class="weather-heading">Simple Weather App</h1>
       <form class="weather-form">
-        <input type="text" placeholder="Search for city here e.g. London, Sydney, Nairobi etc." autofocus="true">
+        <input type="text" placeholder="Search for the city here..." autofocus required>
         <button type="submit" role="button" class="search-icon">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
@@ -24,7 +27,8 @@
     <section id="cities"></section>
   </main>
   <footer>
-    &copy; Copyright 2022 Soila Pertet
+    <span class="copyright">Copyright 2022 Soila Pertet</span>
+    <a href="https://github.com/soilapertet/weather-application"><i class="fa-brands fa-github"></i></a>
   </footer>
 </body>
 </html>
