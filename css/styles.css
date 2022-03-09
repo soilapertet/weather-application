@@ -2,24 +2,31 @@
 * Color Palette
 * https://coolors.co/ffa400-009ffd-fffbff-232528-eaf6ff
 * Middle Blue Green: #77cbb9;
-* Carolina Blue: #009ffd
 * Snow: #fffbff;
 * Raisin Black: #232528;
 * Alice Blue: #eaf6ff;
 */
-
+:root {
+  --fontColour: #eaf6ff;
+  --cityBackground: #232528;
+  --inputBackground: var(--cityBackground);
+  --footerBackground: #77cbb9;
+  --tempFontColour: var(--footerBackground);
+  --darkOrange: #ff8811;
+  --cadet: #4f646f;
+  --countryFontColour: #fffbff;
+}
 html {
   box-sizing: border-box;
-  --fontColour: #eaf6ff;
-  --inputBackground: #232528;
-  --footerBackground: #77cbb9;
 }
 * {
   box-sizing: inherit;
 }
 body {
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 100px;
   margin: 0;
-  padding: 0;
   background-image: url(../img/weather-minimalism.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -63,10 +70,10 @@ body {
   font-size: 20px;
 }
 footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   background-color: var(--footerBackground);
-  width: 100vw;
+  width: 100%;
   height: 60px;
   text-align: center;
   display: flex;
@@ -91,3 +98,64 @@ footer a {
 footer a:visited {
   color: var(--fontColour);
 }
+/********************* Cities *********************/
+#cities {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 30px;
+  margin: 30px; 
+  position: relative;
+  top: 2vw;
+}
+.city {
+  position: relative;
+  border-radius: 20px;
+  padding: 40px 10%;
+  background-color: var(--cityBackground);
+  color: var(--fontColour);
+}
+ .city::after {
+  content: "";
+  width: 90%;
+  height: 50px;
+  position: absolute;
+  bottom: -12px;
+  left: 5%;
+  z-index: -1;
+  opacity: 0.5;
+  border-radius: 20px;
+  background: var(--cadet);
+}
+figure {
+  margin: 0;
+  position: relative;
+  top: -1vw;
+  right: 10px;
+}
+figcaption {
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.city-temp {
+  font-size: 6rem;
+  font-weight: bold;
+  margin-top: 10px;
+  color: var(--tempFontColour);
+}
+.city sup {
+  font-size: 0.5em;
+}
+.city-name sup {
+  padding: 0.2em 0.6em;
+  border-radius: 30px;
+  color: var(--countryFontColour);
+  background: var(--darkOrange);
+}
+.city-icon {
+  position: relative;
+  right: 40px;
+  width: 180px;
+  height: 180px;
+}
+ 
