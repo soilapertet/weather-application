@@ -15,6 +15,7 @@
   --darkOrange: #ff8811;
   --cadet: #4f646f;
   --countryFontColour: #fffbff;
+  --errorMessage: #cc0000;
 }
 html {
   box-sizing: border-box;
@@ -68,6 +69,13 @@ body {
 }
 .fa-magnifying-glass {
   font-size: 20px;
+}
+.error-msg {
+  color: var(--errorMessage);
+  font-style: italic;
+  font-size: 17px;
+  font-weight: bold;
+  margin: 10px;
 }
 footer {
   position: absolute;
