@@ -138,7 +138,7 @@ figure {
   margin: 0;
   position: relative;
   top: -1vw;
-  right: 10px;
+  left: 20px;
 }
 figcaption {
   font-size: 20px;
@@ -154,6 +154,16 @@ figcaption {
 .city sup {
   font-size: 0.5em;
 }
+.high-low-temp {
+  display: block;
+  text-align: center;
+  font-size: 25px;
+  color:var(--fontColour);
+}
+.high-low-temp sup {
+  font-size: 0.7em;
+}
+
 .city-name sup {
   padding: 0.2em 0.6em;
   border-radius: 30px;
