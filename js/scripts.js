@@ -22,6 +22,49 @@ form.addEventListener("submit", (event) => {
   .then(data => {
 
     const { main, name, sys, weather } = data;
+    const icon = weather[0]["icon"];
+
+    switch(true) {
+      case icon === "01d":
+        weatherIcon = "animated/day.svg";
+        break;
+      case icon === "01n":
+        weatherIcon = "animated/night.svg";
+        break;
+      case icon === "02d":
+          weatherIcon = "animated/cloudy-day-3.svg";
+          break;
+      case icon === "02n":
+          weatherIcon = "animated/cloudy-night-3.svg";
+          break;
+      case icon === "03d":
+        weatherIcon = "animated/cloudy-day-2.svg";
+        break;
+      case icon === "03n":
+        weatherIcon = "animated/cloudy-night-2.svg";
+        break;
+      case icon === "04d" || icon === "04n":
+        weatherIcon = "animated/cloudy.svg";
+        break;
+      case icon === "09d" || icon === "09n":
+        weatherIcon = "animated/rainy-5.svg";
+        break;
+      case icon === "10d":
+        weatherIcon = "animated/rainy-3.svg";
+        break;
+      case icon === "10n":
+        weatherIcon = "animated/rainy-6.svg";
+        break;
+      case icon === "11d" || icon === "11n":
+        weatherIcon = "animated/thunder.svg";
+        break;
+      case icon === "13d" || icon === "13n":
+        weatherIcon = "animated/snowy-6.svg";
+        break;
+      case icon === "50d":
+        weatherIcon = "animated/snowy-4.svg";
+        break;
+    }
     
     const section = document.createElement("section");
     section.classList.add("city");
