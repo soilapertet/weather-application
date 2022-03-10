@@ -8,7 +8,46 @@ form.addEventListener("submit", (event) => {
 
   event.preventDefault();
 
-  const inputtedCity = input.value;
+  let inputtedCity = input.value;
+  const inputtedCities = document.querySelector("#cities");
+
+  // Check if the weather data for the city has already been presented
+  const citiesArray = Array.from(inputtedCities.querySelectorAll(".city"));
+  
+  if (citiesArray.length > 0) {
+
+    const filteredArray = citiesArray.filter((city) => {
+      let content = "";
+      // Nairobi,KE
+      if (inputtedCity.includes(",")) {
+        // Nairobi,AAAAEEEK
+        if (inputtedCity.split(",")[1].length > 2) {
+          // Ignore the second part of the array, e.g. AAAAEEEK and returns the city instead
+          inputtedCity = inputtedCity.split(",")[0];
+          content = city.querySelector(".city-name span").innerText.toLowerCase();
+        } else {
+          content = city.querySelector(".city-name").dataset.name.toLowerCase();
+        }
+      } else {
+        // Nairobi
+        content = city.querySelector(".city-name span").innerText.toLowerCase();
+      }
+      
+      // If "true" is returned, the inpuuted city and/or country code will be pushed to the array, 
+      // filteredArray; else, the array remains empty.
+      return content == inputtedCity.toLowerCase();
+    });
+    
+    if (filteredArray.length > 0) {
+      errorMessage.innerText = `* You already know the weather for ${
+        filteredArray[0].querySelector(".city-name span").innerText
+      } .Otherwise, be more specific by providing the country code as well.`;
+    form.reset();
+    input.focus();
+    return;
+    }
+  }
+  
   const apiKey = "336a341afbdb8822005a1515ab344ce6";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputtedCity}&appid=${apiKey}&units=metric`;
   
