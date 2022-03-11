@@ -1,15 +1,18 @@
 const form = document.querySelector(".weather-form");
 const input = document.querySelector("input");
+const cityGrid = document.querySelector("#cities");
+const errorMessage = document.querySelector(".error-msg");
 let weatherIcon;
 
-const errorMessage = document.querySelector(".error-msg");
+const resetGrid = () => {
+  cityGrid.innerHTML = "";
+}
 
 form.addEventListener("submit", (event) => {
 
   event.preventDefault();
 
   let inputtedCity = input.value;
-  const inputtedCities = document.querySelector("#cities");
 
   // Check if the weather data for the city has already been presented
   const citiesArray = Array.from(inputtedCities.querySelectorAll(".city"));
