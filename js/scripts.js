@@ -19,6 +19,10 @@ const initiateCityArray = () => {
   return inputtedCities;
 }
 
+const storeToLocalStorage = () => {
+  localStorage.setItem("inputtedCities", JSON.stringify(inputtedCities));
+}
+
 const validateCities = () => {
     // Check if the weather data for the city has already been presented
     const citiesArray = Array.from(document.querySelectorAll(".city"));
@@ -155,6 +159,7 @@ const appendToCityGrid = () => {
   
       const { main, name, sys, weather } = data;
       inputtedCities.push(data);
+      storeToLocalStorage();
   
       inputtedCities.forEach((city) => {
         updateCityGrid(city);
