@@ -2,10 +2,18 @@ const form = document.querySelector(".weather-form");
 const input = document.querySelector("input");
 const cityGrid = document.querySelector("#cities");
 const errorMessage = document.querySelector(".error-msg");
-let weatherIcon;
+let weatherIcon, inputtedCities;
 
 const resetGrid = () => {
   cityGrid.innerHTML = "";
+}
+const initiateCityArray = () => {
+  // JSON.parse() returns a javascript array instead of a javascript object
+  if(JSON.parse(localStorage.getItem("cityArray") === null)) {
+    inputtedCities = [];
+  } else {
+    inputtedCities = JSON.parse(localStorage.getItem("cityArray"));
+  }
 }
 
 form.addEventListener("submit", (event) => {
