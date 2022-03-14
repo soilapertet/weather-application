@@ -114,10 +114,11 @@ const updateCityGrid = (city) => {
       break;
   }
   
-  const section = document.createElement("section");
-  section.classList.add("city");
+  const weatherSection = document.createElement("section");
+  weatherSection.classList.add("city");
   const weatherContent = 
   `
+  <i class="fa-solid fa-circle-xmark"></i>  
   <h2 class="city-name" data-name="${city.name}, ${city.sys.country}">
     <span>${city.name}</span>
     <sup>${city.sys.country}</sup>
@@ -131,10 +132,25 @@ const updateCityGrid = (city) => {
     <figcaption>${city.weather[0]["description"]}</figcaption>
   </figure>
   `;
-  section.innerHTML = weatherContent;
+  weatherSection.innerHTML = weatherContent;
 
   const cities = document.querySelector("#cities");
-  cities.append(section);
+  cities.append(weatherSection);
+
+  let removeBtnArray = Array.from(document.querySelectorAll(".fa-circle-xmark"));
+  let removeBtn = removeBtnArray[inputtedCities.indexOf(city)];
+  removeBtn.addEventListener("click", () => {
+
+    inputtedCities.splice(inputtedCities.indexOf(city),1);
+    storeToLocalStorage();
+
+    resetGrid();
+
+    inputtedCities.forEach((city) => {
+      updateCityGrid(city);
+    });
+
+  });
 
   form.reset();
   input.focus();
@@ -192,6 +208,7 @@ form.addEventListener("submit", (event) => {
 window.addEventListener("load", () => {
 
   initiateCityArray();
+  resetGrid();
 
   inputtedCities.forEach((city) => {
     updateCityGrid(city);

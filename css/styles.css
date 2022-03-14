@@ -163,7 +163,6 @@ figcaption {
 .high-low-temp sup {
   font-size: 0.7em;
 }
-
 .city-name sup {
   padding: 0.2em 0.6em;
   border-radius: 30px;
@@ -176,4 +175,12 @@ figcaption {
   width: 180px;
   height: 180px;
 }
- 
+.fa-circle-xmark {
+  position: relative;
+  left: 92%;
+  font-size: 30px;
+  cursor: pointer;
+}
+.fa-circle-xmark:hover {
+  opacity: 0.8;
+}
