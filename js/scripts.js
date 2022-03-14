@@ -11,11 +11,13 @@ const resetGrid = () => {
 
 const initiateCityArray = () => {
   // JSON.parse() returns a javascript array instead of a javascript object
-  if(JSON.parse(localStorage.getItem("cityArray") === null)) {
+  if(JSON.parse(localStorage.getItem("inputtedCities") === null)) {
     inputtedCities = [];
+    console.log("NOPE!");
   } else {
-    inputtedCities = JSON.parse(localStorage.getItem("cityArray"));
+    inputtedCities = JSON.parse(localStorage.getItem("inputtedCities"));
   }
+  console.log(inputtedCities)
   return inputtedCities;
 }
 
@@ -49,21 +51,20 @@ const validateCities = () => {
         
         // If "true" is returned, the inpuuted city and/or country code will be pushed to the array, 
         // filteredArray; else, the array remains empty.
-        console.log(content == inputtedCity.toLowerCase());
         return content == inputtedCity.toLowerCase();
       });
       
-      switch(true) {
-
-        case filteredArray.length > 0:
-          errorMessage.innerText = `* You already know the weather for ${
-            filteredArray[0].querySelector(".city-name span").innerText
-          } .Otherwise, be more specific by providing the country code as well.`;
-          form.reset();
-          input.focus();
-        break;
-        }
-      return filteredArray;
+      if(filteredArray.length > 0) {
+        errorMessage.innerText = `* You already know the weather for ${
+          filteredArray[0].querySelector(".city-name span").innerText
+        } .Otherwise, be more specific by providing the country code as well.`;
+        form.reset();
+        input.focus();
+      } else {
+        appendToCityGrid();
+      }
+    } else {
+      appendToCityGrid();
     }
 }
 
@@ -141,8 +142,6 @@ const updateCityGrid = (city) => {
 
 const appendToCityGrid = () => {
   
-  initiateCityArray();
-
   inputtedCity = input.value;
 
   if(inputtedCity === "") {
@@ -160,6 +159,7 @@ const appendToCityGrid = () => {
       const { main, name, sys, weather } = data;
       inputtedCities.push(data);
       storeToLocalStorage();
+      console.log(inputtedCities);
   
       inputtedCities.forEach((city) => {
         updateCityGrid(city);
@@ -176,15 +176,10 @@ const appendToCityGrid = () => {
 form.addEventListener("submit", (event) => {
 
   event.preventDefault();
-
   inputtedCities;
+  initiateCityArray(); 
   validateCities();
-
-  if(validateCities()) {
-    return false;
-  } else {
-    appendToCityGrid();
-  }
+  
 });
 
 input.addEventListener("input", () => {
