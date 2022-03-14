@@ -159,8 +159,10 @@ const appendToCityGrid = () => {
       const { main, name, sys, weather } = data;
       inputtedCities.push(data);
       storeToLocalStorage();
-      console.log(inputtedCities);
-  
+
+      // Reset grid before looping and appending cities to the city grid
+      resetGrid();
+
       inputtedCities.forEach((city) => {
         updateCityGrid(city);
       })
@@ -172,6 +174,11 @@ const appendToCityGrid = () => {
   }
 }
 
+input.addEventListener("input", () => {
+  if(errorMessage.innerText !== "") {
+    errorMessage.innerText = "";
+  }
+});
 
 form.addEventListener("submit", (event) => {
 
@@ -182,9 +189,13 @@ form.addEventListener("submit", (event) => {
   
 });
 
-input.addEventListener("input", () => {
-  if(errorMessage.innerText !== "") {
-    errorMessage.innerText = "";
-  }
+window.addEventListener("load", () => {
+
+  initiateCityArray();
+
+  inputtedCities.forEach((city) => {
+    updateCityGrid(city);
+  });
 });
+
 
