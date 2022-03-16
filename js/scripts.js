@@ -165,7 +165,7 @@ const appendToCityGrid = () => {
     errorMessage.innerText = "* Please enter a valid city in the required field."
   } else {
 
-    const apiKey = "336a341afbdb8822005a1515ab344ce6";
+    const apiKey = "6c561b41e4332bb6267c6928a88d6528";
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputtedCity}&appid=${apiKey}&units=metric`;
     
   
