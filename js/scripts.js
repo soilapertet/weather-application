@@ -4,6 +4,7 @@ const form = document.querySelector(".weather-form");
 const input = document.querySelector("input");
 const cityGrid = document.querySelector("#cities");
 const errorMessage = document.querySelector(".error-msg");
+const button = document.querySelector("button");
 
 const resetGrid = () => {
   cityGrid.innerHTML = "";
@@ -216,3 +217,13 @@ window.addEventListener("load", () => {
 });
 
 
+window.addEventListener("resize", () => {
+
+  let windowViewport = window.innerWidth;
+
+  if(windowViewport < 663) {
+    button.classList.add("button-28");
+  } else {
+    button.classList.remove("button-28");
+  }
+});
